@@ -1,12 +1,7 @@
-import React from 'react'
+import Body from "./components/Body"
+
 function App() {
-  return (
-    <>
-      <div className="text-3xl font-bold underline">
-        Hello start
-      </div>
-    </>
-  )
+  return <Body/>
 }
 
 export default App

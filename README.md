@@ -8,3 +8,5 @@
   - Main movie play and descriptions
   - movie scroll vertical
   - netflix gpt page
+
+  # Formic Library to handle React forms 
