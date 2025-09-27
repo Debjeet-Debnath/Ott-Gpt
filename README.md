@@ -10,3 +10,7 @@
   - netflix gpt page
 
   # Formic Library to handle React forms 
+
+
+  # Redux store
+  to store user after login and sign up
