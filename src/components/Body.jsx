@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 
 const Body = () => {
-    const dispatch = useDispatch();
+const dispatch = useDispatch();
 const appRouter = createBrowserRouter([
     {
       path: "/",

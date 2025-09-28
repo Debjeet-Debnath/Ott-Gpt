@@ -128,7 +128,7 @@ const Login = () => {
           <p>{errorMessage}</p>
           <button
             onClick={handleformSubmission}
-            className="p-4 my-6 bg-red-700 w-full rounded-lg"
+            className="p-4 my-6 bg-red-700 w-full rounded-lg cursor-pointer hover:bg-red-500"
           >
             {isSignIn ? "Sign In" : "Sign Up"}
           </button>
