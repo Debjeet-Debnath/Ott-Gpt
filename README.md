@@ -14,3 +14,5 @@
 
   # Redux store
   to store user after login and sign up
+
+  # handled One problem during autheitcation only email and uid was there in the store initially but no display name and photourl

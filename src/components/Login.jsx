@@ -5,18 +5,23 @@ import { auth } from "../utils/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const [passwordSame, SetPasswordSame] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const email = useRef(null);
   const password = useRef(null);
   const verifyPassword = useRef(null);
+  const name = useRef(null);
 
   const toggleSignIn = () => {
     setIsSignIn(!isSignIn);
@@ -46,12 +51,32 @@ const Login = () => {
         email.current.value,
         password.current.value
       ) // THis is an api returns promise like others  and user is authenticated here
-        .then((userCredential) => {
+        .then(() => {
           // Signed up
-          const user = userCredential.user;
-          console.log(user);
-          navigate("/browse");
-          // ...
+          updateProfile(auth.currentUser, {
+            displayName: name.current.value,
+            photoURL:
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoZAPhkIP75IVa4trptoEfFlzk-0KFEm0ibg&s",
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+              navigate("/browse");
+            })
+            .catch((error) => {
+              setErrorMessage(error.message);
+              setTimeout(() => {
+                setErrorMessage("");
+              }, 6000);
+              console.log(error.message + "---" + error.code);
+            });
         })
         .catch((error) => {
           setErrorMessage(error.code + "-" + error.message);
@@ -62,8 +87,9 @@ const Login = () => {
     } else {
       signInWithEmailAndPassword(
         auth,
-        email.current.value, 
-        password.current.value)
+        email.current.value,
+        password.current.value
+      )
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
@@ -72,7 +98,11 @@ const Login = () => {
           // ...
         })
         .catch((error) => {
-          console.log(error.message + "---" + error.code);  
+          setErrorMessage(error.message);
+          setTimeout(() => {
+            setErrorMessage("");
+          }, 6000);
+          console.log(error.message + "---" + error.code);
         });
     }
   };
@@ -96,6 +126,7 @@ const Login = () => {
           </h1>
           {!isSignIn && (
             <input
+              ref={name}
               type="text"
               placeholder="Full Name"
               className="p-4 my-4 w-full bg-gray-700"
