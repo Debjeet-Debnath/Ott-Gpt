@@ -7,15 +7,14 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { ProfilePic } from "../utils/constants";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const [passwordSame, SetPasswordSame] = useState(null);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const email = useRef(null);
@@ -42,7 +41,6 @@ const Login = () => {
       email.current.value,
       password.current.value
     );
-    console.log(message);
     setErrorMessage(message);
     if (message) return;
     if (!isSignIn) {
@@ -55,8 +53,7 @@ const Login = () => {
           // Signed up
           updateProfile(auth.currentUser, {
             displayName: name.current.value,
-            photoURL:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoZAPhkIP75IVa4trptoEfFlzk-0KFEm0ibg&s",
+            photoURL: ProfilePic,
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -68,20 +65,17 @@ const Login = () => {
                   photoURL: photoURL,
                 })
               );
-              navigate("/browse");
             })
             .catch((error) => {
               setErrorMessage(error.message);
               setTimeout(() => {
                 setErrorMessage("");
               }, 6000);
-              console.log(error.message + "---" + error.code);
             });
         })
         .catch((error) => {
           setErrorMessage(error.code + "-" + error.message);
-          console.log(error.code);
-          console.log(error.message);
+
           // ..
         });
     } else {
@@ -91,18 +85,13 @@ const Login = () => {
         password.current.value
       )
         .then((userCredential) => {
-          // Signed in
           const user = userCredential.user;
-          console.log(user);
-          navigate("/browse");
-          // ...
         })
         .catch((error) => {
           setErrorMessage(error.message);
           setTimeout(() => {
             setErrorMessage("");
           }, 6000);
-          console.log(error.message + "---" + error.code);
         });
     }
   };
