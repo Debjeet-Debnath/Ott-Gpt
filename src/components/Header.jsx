@@ -23,7 +23,7 @@ const Header = () => {
       navigate('/');
     })
     .catch((error) => {
-    
+      alert(error.message+ "--- " + error.code)
       navigate('/error');
     })
   }
@@ -50,7 +50,7 @@ const Header = () => {
 
   return (
     <div className='absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between'> 
-        <img className='w-44'
+        <img className='w-44 h-17' 
         src={LOGO} alt="Netflix_logo" />
         {
           user  && 
