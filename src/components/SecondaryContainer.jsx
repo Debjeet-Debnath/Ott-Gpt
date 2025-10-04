@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
+import MovieList from "./MovieList";
+import { useSelector } from "react-redux";
 
 const SecondaryContainer = () => {
+  const moviesList = useSelector((store) => (store.movies?.nowPlayingMovies))
+  if(!moviesList) return;
   return (
-    <div>SecondaryContainer</div>
-  )
-}
+    <>
+      <MovieList title={"Now PLaying Movies"} movies = {moviesList} />
+    </>
+  );
+};
 
-export default SecondaryContainer
+export default SecondaryContainer;
