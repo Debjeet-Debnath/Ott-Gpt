@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 const SecondaryContainer = () => {
   const moviesList = useSelector((store) => (store.movies?.nowPlayingMovies))
-  if(!moviesList) return;
+  // if(!moviesList) return;
   return (
     <>
       <MovieList title={"Now PLaying Movies"} movies = {moviesList} />

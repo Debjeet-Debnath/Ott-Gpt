@@ -9,3 +9,4 @@ export const API_OPTIONS = {
     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0YWQzMTE4ZGY5Yzk1N2JiODcwMDA2NDRhODlkYTU2OCIsIm5iZiI6MTc1OTQ2ODQyMC40OCwic3ViIjoiNjhkZjViODQxNjRiN2QxYmIyM2I4YWQ0Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.RuRafF1wBH0Q2kliJSGn-Tp6oHt0HcXhisvltDS4Rns'
   }
 };
+

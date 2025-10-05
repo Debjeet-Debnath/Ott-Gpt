@@ -3,7 +3,7 @@ import MovieCard from "./MovieCard";
 const MovieList = ({ title, movies }) => {
   // useEffect(()=>{console.log(movies)})
 
-  if (!movies) return;
+  // if (!movies) return;
 
   return (
     <>
@@ -12,7 +12,7 @@ const MovieList = ({ title, movies }) => {
         {movies?.map((movie) => (
           <MovieCard
             key={movie.id}
-            image={movie.backdrop_path}
+            image={movie.poster_path}
             movieTitle={movie.title}
             overview={movie.overview}
           />
