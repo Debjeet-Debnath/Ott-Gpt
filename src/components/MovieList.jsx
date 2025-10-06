@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import MovieCard from "./MovieCard";
 const MovieList = ({ title, movies }) => {
-  useEffect(()=>{console.log(movies)})
+  // useEffect(()=>{console.log(movies)})
 
   if (!movies) return;
 

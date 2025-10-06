@@ -7,7 +7,11 @@ const SecondaryContainer = () => {
   const popularMovies = useSelector((store) => store.movies?.popularMovies);
   const TopRated = useSelector((store) => store.movies?.topRatedMovies);
   const upComing = useSelector((store) => store.movies?.upComingMovies);
-  if (!moviesList || !popularMovies || !TopRated) return;
+  if (!moviesList || !popularMovies || !TopRated ) return;
+  // console.log(moviesList)
+  // console.log(popularMovies);
+  // console.log(TopRated)
+  // console.log(upComing)
   return (
     <>
       <div className="bg-black w-screen">

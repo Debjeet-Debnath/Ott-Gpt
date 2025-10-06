@@ -1,17 +1,19 @@
-import React, { useEffect } from 'react'
-import { API_OPTIONS } from '../utils/constants'
-import { useDispatch } from 'react-redux'
-import { addUpcomingMovies } from '../utils/movieSlice';
+import React, { useEffect } from "react";
+import { API_OPTIONS } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { addUpcomingMovies } from "../utils/movieSlice";
 
 const useUpcomingMovies = () => {
-    const dispatch = useDispatch();
-    const upComingMovies = async () => {
-        const movies = await fetch('https://api.themoviedb.org/3/movie/upcoming',API_OPTIONS)
-        const json = await movies.json();
-        const result = json.results;
-        dispatch(addUpcomingMovies(result));
-    }
-    useEffect(() => upComingMovies(), []);
-}
+  const dispatch = useDispatch();
+  const upComingMovies = () => {
+    fetch("https://api.themoviedb.org/3/movie/upcoming'", API_OPTIONS)
+      .then((res) => res.json())
+      .then((res) => {
+        dispatch(addUpcomingMovies(res.results));
+      })
+      .catch((err) => console.error(err));
+  };
+  useEffect(upComingMovies, []);
+};
 
 export default useUpcomingMovies;
